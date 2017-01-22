@@ -14,7 +14,7 @@ $access_token = "xxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxx";
 $access_token_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
 // Sample Query
-$query = $_GET["search"];
+$query = urlencode($_GET["search"]);
 $twitter_url = "search/tweets.json?q=".$query;
 
 // Create a Twitter Proxy object from our twitter_proxy.php class
