@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+ <?php print rand(1,100000);?><!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -21,7 +22,7 @@
 				margin-top: 5px;
 			}
 			.border {
-				border: 1px solid #efefef;
+				border: 1px solid #4c98f3;
 			}
 			.div-hover:hover{
 				box-shadow: 3px 3px 5px 6px #ccc;
@@ -31,15 +32,42 @@
     <body>
 	<div class="container-fluid">
 		<div class="row">
-			<form method="post" name="f" id="keyword_form" class="col-md-6 centered p-120">
-				<input type="text" class="form-control" name="search" placeholder="Search your tags!!" value="">
-				<input id="sub" type="submit" name="sub" class="btn btn-primary pull-right btn-top-margin">
+			<form method="post" name="f" id="keyword_form" class="col-md-6 centered p-120" >
+				<input type="text" id="text" class="form-control" name="search" placeholder="Search your tags!!" value="">
+				<input id="sub" type="button" name="sub" class="btn btn-primary pull-right btn-top-margin" onclick="ajaxFunction(document.getElementById('text').value);">
 			<form>
 		</div>
 	</div>
-	<div class="tweets-container"></div>
+
+	<div class='tweets-container' id='tweets'>abc</div>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function ajaxFunction(cid)
+  {
+
+  //Set loading icon first
+  document.getElementById('tweets').innerHTML='<IMG SRC = loading.gif>';
+
+  var xmlHttp = new XMLHttpRequest();
+ 
+    xmlHttp.onreadystatechange=function()
+      {
+      if(xmlHttp.readyState==4)
+        {
+        document.getElementById('tweets').innerHTML=xmlHttp.responseText;
+        }
+      }
+     xmlHttp.open("POST", "getTweet.php?cid="+cid,true);
+     xmlHttp.send(null);  
+	}	
+
+</SCRIPT>
+
+
 
         <script src="js/jquery.js"></script>
-        <script src="js/tweets.js"></script>
+        <!--<script src="js/tweets.js"></script>-->
     </body>
 </html>
